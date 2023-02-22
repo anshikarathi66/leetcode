@@ -24,20 +24,20 @@ public:
         }
     }
     
-    ListNode *reverse(ListNode *head)
-    {
-        ListNode * prev = NULL;
-        ListNode * current = head;
-        ListNode * next;
-        while (current != NULL)
-        {
-            next = current->next;
-            current->next = prev;
-            prev = current;
-            current = next;
-        }
-        return prev;
-    }
+//     ListNode *reverse(ListNode *head)
+//     {
+//         ListNode * prev = NULL;
+//         ListNode * current = head;
+//         ListNode * next;
+//         while (current != NULL)
+//         {
+//             next = current->next;
+//             current->next = prev;
+//             prev = current;
+//             current = next;
+//         }
+//         return prev;
+//     }
     
     ListNode* add(ListNode* first, ListNode* second){
         int carry =0;
