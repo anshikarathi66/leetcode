@@ -74,16 +74,13 @@ struct Node
 bool isCircular(Node *head)
 {
    // Your code here
-   Node* slow=head;
-   Node* fast = head;
-   
-   while(slow && fast && fast->next!=NULL){
-       slow=slow->next;
-       fast=fast->next->next;
-       
-       if(slow==fast)
-       return true;
-   }
-   
-   return false;
+  Node* temp=head;
+  
+  while(temp!=NULL){
+      temp=temp->next;
+      if(temp == head){
+          return true;
+      }
+  }
+  return false;
 }
