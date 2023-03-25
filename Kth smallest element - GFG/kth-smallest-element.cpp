@@ -15,20 +15,20 @@ class Solution{
     // k : find kth smallest element and return using this function
     int kthSmallest(int arr[], int l, int r, int k) {
         //code here
-         priority_queue<int, vector<int>, greater<int>> pq;
-         
-         for(int i=0;i<=r;i++){
-             pq.push(arr[i]);
-         }
-         
-         while(k--){
-             if(k==0){
-                 return pq.top();
-             }
-             pq.pop();
-         }
-         
+        priority_queue<int , vector<int>, greater<int>> pq;
+        
+        for(int i=l;i<=r;i++){
+            pq.push(arr[i]);
+        }
+        
+        while(k>1){
+            pq.pop();
+            k--;
+        }
+        
+        return pq.top();
     }
+    
 };
 
 //{ Driver Code Starts.
