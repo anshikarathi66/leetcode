@@ -12,48 +12,49 @@
 class Solution {
 public:
     TreeNode* insertIntoBST(TreeNode* root, int val) {
-//         if(root == NULL){
-//             root = new TreeNode(val);
-//         }
-//         TreeNode* cur = root;
-        
-//         while(true){
-//         if(cur-> val > val){
-//             if(cur->left){
-//                 cur = cur->left;
-                
-//             }
-//             else{
-//                 cur->left = new TreeNode(val);
-//                 break;
-//             }
-//         }
-//         else{
-//             if(cur->right){
-//                 cur = cur->right;
-                
-//             }
-//             else{
-//                 cur->right = new TreeNode(val);
-//                 break;
-//             }
-//         }
-//     }
-//         return root;
-        
-        //base case
         if(root == NULL){
-            return new TreeNode(val);
-            
+            root = new TreeNode(val);
+            return root;
         }
+        TreeNode* cur = root;
         
-        if(val > root->val){
-            root->right = insertIntoBST(root->right,val);
+        while(true){
+        if(cur-> val > val){
+            if(cur->left){
+                cur = cur->left;
+                
+            }
+            else{
+                cur->left = new TreeNode(val);
+                break;
+            }
         }
         else{
-            root->left = insertIntoBST(root->left , val);
+            if(cur->right){
+                cur = cur->right;
+                
+            }
+            else{
+                cur->right = new TreeNode(val);
+                break;
+            }
         }
-        
+    }
         return root;
+        
+//         //base case
+//         if(root == NULL){
+//             return new TreeNode(val);
+            
+//         }
+        
+//         if(val > root->val){
+//             root->right = insertIntoBST(root->right,val);
+//         }
+//         else{
+//             root->left = insertIntoBST(root->left , val);
+//         }
+        
+//         return root;
     }
 };
