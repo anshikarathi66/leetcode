@@ -57,7 +57,6 @@ public:
             
             int digit = sum%10;
             insertAtTail(ansHead,ansTail, digit);
-            
             carry = sum/10;
             
             if(first!=NULL){
