@@ -8,6 +8,9 @@ public:
         for(int i=0;i<4;i++){
             int nrow = row + delRow[i];
             int ncol = col + delCol[i];
+            
+            //use ans[nrow][ncol] != newColor 
+            //instead of visited map to tell if visted or not
             if(nrow>=0 && nrow<n && ncol>=0 && ncol<m && image[nrow][ncol] == iniColor && ans[nrow][ncol] != newColor){
                 dfs(nrow,ncol,ans,image,newColor, delRow, delCol, iniColor);
             }
