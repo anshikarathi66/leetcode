@@ -32,6 +32,25 @@ class Solution {
          return false;
     }
     
+    bool isCyclicDFS(unordered_map<int,bool> &visited, int parent, vector<int> adj[], int src){
+        visited[src] = true;
+        
+        //for each connected call
+        for(int i=0;i<adj[src].size();i++){
+            if(!visited[adj[src][i]]){
+                bool cycleDetected = isCyclicDFS(visited, src, adj, adj[src][i]);
+                if(cycleDetected == true){
+                    return true;
+                }
+            }
+            else if(parent != adj[src][i]){
+                return true;
+            }
+        }
+        
+        return false;
+    }
+    
     bool isCycle(int V, vector<int> adj[]) {
         // Code here
         
@@ -43,7 +62,8 @@ class Solution {
         
         for(int i=0;i<V;i++){
             if(!visited[i]){
-                bool ans = isCyclicBFS(visited, parent, adj, i);
+                // bool ans = isCyclicBFS(visited, parent, adj, i);
+                bool ans = isCyclicDFS(visited, -1, adj, i);
                 if(ans){
                 return true;
             }
