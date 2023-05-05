@@ -7,38 +7,80 @@ class Solution
 {
 	public:
 	//Function to return list containing vertices in Topological order.
-	void dfstopo(int node, unordered_map<int,bool> &visited, stack<int> &s, vector<int> adj[]){
-	    visited[node] = true;
+// 	void dfstopo(int node, unordered_map<int,bool> &visited, stack<int> &s, vector<int> adj[]){
+// 	    visited[node] = true;
 	    
-	    for(int i=0;i<adj[node].size();i++){
-	        if(!visited[adj[node][i]]){
-	            dfstopo(adj[node][i], visited, s ,adj);
-	        }
-	    }
+// 	    for(int i=0;i<adj[node].size();i++){
+// 	        if(!visited[adj[node][i]]){
+// 	            dfstopo(adj[node][i], visited, s ,adj);
+// 	        }
+// 	    }
 	    
-	    s.push(node);
-	}
+// 	    s.push(node);
+// 	}
 	
+// 	vector<int> topoSort(int V, vector<int> adj[]) 
+// 	{
+// 	    // code here
+// 	    unordered_map<int, bool> visited;
+// 	    stack<int> s;
+	    
+// 	    for(int i =0;i<V;i++){
+// 	        if(!visited[i]){
+// 	            dfstopo(i,visited, s ,adj);
+// 	        }
+// 	    }
+	    
+// 	    vector<int> ans;
+// 	    while(!s.empty()){
+// 	        ans.push_back(s.top());
+// 	        s.pop();
+// 	    }
+	    
+// 	    return ans;
+// 	}
+	
+	
+	// **********USING KAHN'S ALGORITHM(BFS)**************
 	vector<int> topoSort(int V, vector<int> adj[]) 
 	{
 	    // code here
-	    unordered_map<int, bool> visited;
-	    stack<int> s;
+	   
+	    //calculate indegree
+	    unordered_map<int,int> indegree;
 	    
-	    for(int i =0;i<V;i++){
-	        if(!visited[i]){
-	            dfstopo(i,visited, s ,adj);
+	    for(int i = 0 ; i < V ; i++){
+	        for(int j =0;j<adj[i].size();j++){
+	            indegree[adj[i][j]]++;
 	        }
 	    }
 	    
+	    //do bfs
 	    vector<int> ans;
-	    while(!s.empty()){
-	        ans.push_back(s.top());
-	        s.pop();
+	    queue<int> q;
+	    for(int i =0;i<V;i++){
+	        if(indegree[i] == 0){
+	            q.push(i);
+	        }
+	    }
+	    
+	    
+	    while(!q.empty()){
+	        int frontNode = q.front();
+	        q.pop();
+	        ans.push_back(frontNode);
+	        
+	        for(int neighbours = 0; neighbours < adj[frontNode].size() ; neighbours++){
+	            indegree[adj[frontNode][neighbours]]--;
+	            if(indegree[adj[frontNode][neighbours]] == 0){
+	                q.push(adj[frontNode][neighbours]);
+	            }
+	        }
 	    }
 	    
 	    return ans;
 	}
+	
 };
 
 //{ Driver Code Starts.
