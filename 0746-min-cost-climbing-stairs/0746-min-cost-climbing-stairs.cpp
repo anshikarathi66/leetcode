@@ -41,6 +41,20 @@ public:
         return min(dp[n-1],dp[n-2]);
     }
     
+    
+    int solveoptimised(vector<int>& cost,int n){
+        int prev2 = cost[0];
+        int prev1 = cost[1];
+        int ans = 0;
+        for(int i=2;i<n;i++){
+            ans = min(prev1, prev2) + cost[i];
+            prev2= prev1;
+            prev1=ans;
+        }
+        
+        return min(prev1,prev2);
+    }
+    
     int minCostClimbingStairs(vector<int>& cost) {
         int n = cost.size();  
         // return min(solve(cost, n-1) , solve(cost , n-2)); //for last (nth) step since it doesn't need any cost to be at last step
@@ -48,6 +62,8 @@ public:
         // vector<int> dp(n+1 , -1);
         // return min(solveMem(cost,n-1,dp), solveMem(cost,n-2,dp));
         
-        return solveTab(cost, n);
+        // return solveTab(cost, n);
+        
+        return solveoptimised(cost,n);
     }
 };
